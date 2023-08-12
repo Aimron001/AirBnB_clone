@@ -7,9 +7,24 @@ from datetime import datetime
 
 class BaseModel:
     """implements a BaseModel class"""
-    id = str(uuid4())
-    created_at = datetime.today()
-    updated_at = datetime.today()
+
+    def __init__(self, *args, **kwargs):
+        """Iniatializes the basemodel class
+
+        Args:
+            *args (any type): arguements
+            **kwargs (dict): key and value pairs
+        """
+    tm_format = "%Y-%m-%dT%H:%M:%S.%f"
+    self.id = str(uuid4())
+    self.created_at = datetime.today()
+    self.updated_at = datetime.today()
+    if len(kwargs) != 0:
+        for key, value in kwargs.items():
+            if k == "created_at" or k == "updated_at":
+                self.__dict__[key] = datetime.strptime(v, tm_format)
+            else:
+                self.__dict__[key] = value
 
     def save(self):
         """updates the updated_at attribute"""
