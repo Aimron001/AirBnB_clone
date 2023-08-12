@@ -15,16 +15,16 @@ class BaseModel:
             *args (any type): arguements
             **kwargs (dict): key and value pairs
         """
-    tm_format = "%Y-%m-%dT%H:%M:%S.%f"
-    self.id = str(uuid4())
-    self.created_at = datetime.today()
-    self.updated_at = datetime.today()
-    if len(kwargs) != 0:
-        for key, value in kwargs.items():
-            if k == "created_at" or k == "updated_at":
-                self.__dict__[key] = datetime.strptime(v, tm_format)
-            else:
-                self.__dict__[key] = value
+        tm_format = "%Y-%m-%dT%H:%M:%S.%f"
+        self.id = str(uuid4())
+        self.created_at = datetime.today()
+        self.updated_at = datetime.today()
+        if len(kwargs) != 0:
+            for key, value in kwargs.items():
+                if key == "created_at" or key == "updated_at":
+                    self.__dict__[key] = datetime.strptime(value, tm_format)
+                else:
+                    self.__dict__[key] = value
 
     def save(self):
         """updates the updated_at attribute"""
