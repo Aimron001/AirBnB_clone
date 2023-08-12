@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Defines a class containing common attributes,
 and methods for other classes"""
+import models
 from uuid import uuid4
 from datetime import datetime
 
@@ -25,10 +26,13 @@ class BaseModel:
                     self.__dict__[key] = datetime.strptime(value, tm_format)
                 else:
                     self.__dict__[key] = value
+        else:
+            models.storage.new(self)
 
     def save(self):
         """updates the updated_at attribute"""
         updated_at = datetime.today()
+        models.storage.save()
 
     def to_dict(self):
         """returns a dictionary containing all keys/values"""
