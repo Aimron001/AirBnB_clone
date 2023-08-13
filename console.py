@@ -7,6 +7,10 @@ class HBNBCommand(cmd.Cmd):
     """implements the command interpreter class"""
     prompt = "(hbnb) "
 
+    def emptyline(self):
+        """Do nothing on empty line"""
+        pass
+
     def do_quit(self, arg):
         """Quits the program"""
         return True
