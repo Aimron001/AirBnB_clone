@@ -2,6 +2,7 @@
 """Defines a FileStorage Class"""
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
@@ -20,9 +21,9 @@ class FileStorage:
 
     def new(self, obj):
         """ sets in __objects the obj with key <obj class name>.id"""
-        key = obj.__class__.__name__
-        FileStorage.__objects["{}.{}".format(key,obj.id)] = obj
-        
+        o_cls_name = obj.__class__.__name__
+        FileStorage.__objects["{}.{}".format(o_cls_name, obj.id)] = obj
+
     def save(self):
         """serializes __objects to the JSON file (path: __file_path)"""
         tmpdict = FileStorage.__objects
