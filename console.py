@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""AirBnB command interpreter"""
+"""AirBnB console"""
 import cmd
 import re
 from shlex import split
@@ -32,10 +32,20 @@ def parser(arg):
 
 
 class HBNBCommand(cmd.Cmd):
-    """implements the command interpreter class"""
+    """implements the command interpreter class
+
+    Attributes:
+        prompt (str): The prompt
+    """
     prompt = "(hbnb) "
     __classes = {
-            "BaseModel"
+            "BaseModel",
+            "User",
+            "State",
+            "City",
+            "Place",
+            "Amenity",
+            "Review"
             }
 
     def emptyline(self):
