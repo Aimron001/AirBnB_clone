@@ -52,6 +52,27 @@ class HBNBCommand(cmd.Cmd):
         """Do nothing on empty line"""
         pass
 
+    def default(self, arg):
+        """defines actions for cmd module when input is invalid"""
+        args_dict = {
+            "all": self.do_all,
+            "show": self.do_show,
+            "destroy": self.do_destroy,
+            "count": self.do_count,
+            "update": self.do_update
+        }
+        match = re.search(r"\.", arg)
+        if match is not None:
+            arg_l = [arg[:match.span()[0]], arg[match.span()[1]:]]
+            match = re.search(r"\((.*?)\)", arg_l[1])
+            if match is not None:
+                command = [arg_l[1][:match.span()[0]], match.group()[1:-1]]
+                if command[0] in args_dict.keys():
+                    call = "{} {}".format(arg_l[0], command[1])
+                    return args_dict[command[0]](call)
+        print("*** Unknown syntax: {}".format(arg))
+        return False
+
     def do_create(self, arg):
         """creates a new instance of the BaseModel class,
         saves it and prints th id
@@ -144,6 +165,17 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     obj.__dict__[key] = val
             storage.save()
+
+    def do_count(self, arg):
+        """Usage: count <class> or <class>.count()
+        Retrieves the number of instances of a given class.
+        """
+        args = parse(arg)
+        count = 0
+        for obj in storage.all().values():
+            if args[0] == obj.__class__.__name__:
+                count += 1
+        print(count)
 
     def do_all(self, arg):
         """Usage: all or all <class> or <class>.all()
