@@ -1,11 +1,10 @@
 #!/usr/bin/python3
 """Defines unittests classes for base_model.py."""
 import os
-import models
 import unittest
 from datetime import datetime
 from time import sleep
-from models.base_model import BaseModel
+from ...models.base_model import BaseModel
 
 
 class TestBaseModel_instantiation(unittest.TestCase):
@@ -42,7 +41,6 @@ class TestBaseModel_save(unittest.TestCase):
         first_updated_at = bm.updated_at
         bm.save()
         self.assertLess(first_updated_at, bm.updated_at)
-
 
     def test_save_with_arg(self):
         bm = BaseModel()
