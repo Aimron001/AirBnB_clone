@@ -8,7 +8,7 @@ header {
 	align-items: center;
 }
 header a {
-	background-image: url("https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/268/logo.png");
+	background: url("../images/logo.png") no-repeat center;
 	background-repeat: no-repeat;
-	display: block;
-	margin-left: 20px;
+	padding-left: 20px;
+}

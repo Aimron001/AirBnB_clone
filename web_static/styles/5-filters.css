@@ -1,12 +1,14 @@
-.container .filters {
+.filters {
 	background-color: #FFF;
 	height: 70px;
 	width: 100%;
-	border: 1px #DDD;
+	border: 1px solid #DDD;
 	border-radius: 4px;
+	text-align: right;
 	
 }
-button {
+section.filters button {
+	margin: 12px 30px 12px auton;
 	font-size: 18px;
 	background-color: #FF5A5F;
 	color: #FFF;
@@ -15,12 +17,15 @@ button {
 	border-radius: 4px;
 }
 
-button:hover{
+section.filters button:hover{
 	opacity: 90%;
 }
 .locations, .amenities {
 	height: 100%;
 	width: 25%;
+	text-align: left;
+	margin-left: 30px;
+	float: left;
 
 }
 .locations, .amenities h3{
@@ -31,13 +36,4 @@ button:hover{
         font-weight: 400;
 	font-size: 14px;
 
-}
-.locations {
-	border-right: 1px solid #DDD;
-	display: grid;
-	place-content: center;
-
-}
-.amenities {
-	margin-right: auto;
 }
